@@ -24,6 +24,28 @@ replaceSelected(textInputRef.current, "new text");
 import React, { useState, useRef } from 'react';
 
 import { StyleSheet, View, Button, TextInput } from 'react-native';
+import { useReplaceSelected } from 'react-native-replace-selected';
+
+export default function App() {
+  const [text, setText] = useState('Example Text');
+  const textInputRef = useRef<TextInput>(null);
+  const replaceSelected = useReplaceSelected(textInputRef);
+
+  const replaceText = () => replaceSelected('😀');
+
+  return (
+    <View>
+      <TextInput ref={textInputRef} onChangeText={setText} value={text} />
+      <Button title="Replace selected text with 😀" onPress={replaceText} />
+    </View>
+  );
+}
+```
+
+```typescript
+import React, { useState, useRef } from 'react';
+
+import { StyleSheet, View, Button, TextInput } from 'react-native';
 import { replaceSelected } from 'react-native-replace-selected';
 
 export default function App() {
@@ -37,7 +59,7 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <TextInput ref={textInputRef} onChangeText={setText} value={text} />
       <Button title="Replace selected text with 😀" onPress={replaceText} />
     </View>

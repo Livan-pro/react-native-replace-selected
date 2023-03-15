@@ -1,3 +1,4 @@
+import { RefObject, useCallback } from 'react';
 import {
   findNodeHandle,
   NativeModules,
@@ -25,3 +26,11 @@ const ReplaceSelected = NativeModules.ReplaceSelected
 export function replaceSelected(input: TextInput, text: string): void {
   ReplaceSelected.replaceSelected(findNodeHandle(input), text);
 }
+
+export const useReplaceSelected = (inputRef: RefObject<TextInput | null>) => {
+  return useCallback(
+    (text: string) =>
+      inputRef.current && replaceSelected(inputRef.current, text),
+    [inputRef]
+  );
+};

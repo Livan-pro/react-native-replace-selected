@@ -1,17 +1,14 @@
 import React, { useState, useRef } from 'react';
 
 import { StyleSheet, View, Button, TextInput } from 'react-native';
-import { replaceSelected } from 'react-native-replace-selected';
+import { useReplaceSelected } from 'react-native-replace-selected';
 
 export default function App() {
   const [text, setText] = useState('Example Text');
   const textInputRef = useRef<TextInput>(null);
+  const replaceSelected = useReplaceSelected(textInputRef);
 
-  const replaceText = () => {
-    if (!textInputRef.current) return;
-
-    replaceSelected(textInputRef.current, '😀');
-  };
+  const replaceText = () => replaceSelected('😀');
 
   return (
     <View style={styles.container}>
