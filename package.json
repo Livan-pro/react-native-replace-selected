@@ -1,6 +1,6 @@
 {
   "name": "react-native-replace-selected",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "This library provides native method for replacing selected text in react-native's TextInput with a new text",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
